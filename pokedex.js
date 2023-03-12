@@ -1,24 +1,3 @@
-//FUNCION PARA ACCEDER A LA URL CON LOS DATOS
-const getUrl = async (iterator) => {
-    try{
-        let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${iterator}`); //llamo a la api, toma un iterador para ubicar cada url
-        let pokemon = await response.json(); //convierte esa respuesta en json, desglosa cada objeto de cada pokemon
-        createPoke(pokemon); //utilizo esa respuesta para crear cada caja en la funcion createPoke
-    } catch (err) {
-        console.log(`Message: ${err}`);
-    }
-}
-//FUNCION PARA ITERAR EL ID DE CADA POKEMON EN LA URL 
-const fetchIterator = async () => {
-
-    for(let i = 1; i < 152; i++) 
-    {
-       await getUrl(i); //utilizo el url de getUrl y le asigno su iterador 
-    }
-
-}
-fetchIterator();
-
 
 const colours = {
 	normal: '#A8A77A',
@@ -41,95 +20,81 @@ const colours = {
 	fairy: '#D685AD',
 };
 
+// const pokemonArray = [];
+
+//FUNCION PARA ACCEDER A LA URL CON LOS DATOS
+const getUrl = async (iterator) => {
+
+    const url = 'https://pokeapi.co/api/v2/pokemon/';
+
+    try{
+        let response = await fetch(`${url}${iterator}`); //llamo a la api, toma un iterador para ubicar cada url
+        let pokemon = await response.json(); //convierte esa respuesta en json, desglosa cada objeto de cada pokemon
+        // pokemon.push
+        createPoke(pokemon); //utilizo esa respuesta para crear cada caja en la funcion createPoke
+        
+    } catch (err) {
+        console.log(`Message: ${err}`);
+    }
+}
+
+
+//FUNCION PARA ITERAR EL ID DE CADA POKEMON EN LA URL 
+const fetchIterator = async () => {
+
+    for(let i = 1; i < 152; i++) 
+    {
+       await getUrl(i); //utilizo el url de getUrl y le asigno su iterador 
+    }
+
+}
+
+fetchIterator();
+
+
+
 //FUNCION PARA CREAR CADA POKEMON
 function createPoke(pokemon) {
     const ol$$ = document.querySelector('ol');
 
-    const li$$ = document.createElement('li');
-    ol$$.appendChild(li$$);
-
     const pokeDiv$$ = document.createElement('div');
-    pokeDiv$$.classList.add('pokemon__div')
+    pokeDiv$$.classList.add('pokemon-div')
 
     let statBase = pokemon.stats[0].base_stat;
     let statName = pokemon.stats[0].stat.name;
 
-    switch(pokemon.types[0].type.name) {
-        case 'grass':
-        pokeDiv$$.style.backgroundColor = colours.grass;
-        break;
-        case 'fire': 
-        pokeDiv$$.style.backgroundColor = colours.fire;
-        break;
-        case 'water':
-        pokeDiv$$.style.backgroundColor = colours.water;
-        break;
-        case 'bug':
-        pokeDiv$$.style.backgroundColor = colours.bug;
-        break;
-        case 'electric':
-        pokeDiv$$.style.backgroundColor = colours.electric;
-        break;
-        case 'normal':
-        pokeDiv$$.style.backgroundColor = colours.normal;
-        break;
-        case 'ice':
-        pokeDiv$$.style.backgroundColor = colours.ice;
-        break;
-        case 'fighting':
-        pokeDiv$$.style.backgroundColor = colours.fighting;
-        break;
-        case 'poison':
-        pokeDiv$$.style.backgroundColor = colours.poison;
-        break;
-        case 'ground':
-        pokeDiv$$.style.backgroundColor = colours.ground;
-        break;
-        case 'flying':
-        pokeDiv$$.style.backgroundColor = colours.flying;
-        break;
-        case 'psychic':
-        pokeDiv$$.style.backgroundColor = colours.psychic;
-        break;
-        case 'rock':
-        pokeDiv$$.style.backgroundColor = colours.rock;
-        break;
-        case 'ghost':
-        pokeDiv$$.style.backgroundColor = colours.ghost;
-        break;
-        case 'dragon':
-        pokeDiv$$.style.backgroundColor = colours.dragon;
-        break;
-        case 'dark':
-        pokeDiv$$.style.backgroundColor = colours.dark;
-        break;
-        case 'fairy':
-        pokeDiv$$.style.backgroundColor = colours.fairy;
-        break;
-        case 'steel':
-        pokeDiv$$.style.backgroundColor = colours.steel;
-        break;
-    }
+    //asigno su primer tipo (siempre existente) al color 1
+    let colour1 = getColour(pokemon.types[0].type.name);
 
+    //obtengo su color 2 si tiene un segundo subtipo y sino, imprimo su color1
+    let colour2 = pokemon.types.length > 1 ? getColour(pokemon.types[1].type.name) : colour1;
+
+    //asigno el gradiante al div con ambos o un color
+    pokeDiv$$.style.backgroundImage = `linear-gradient(${colour1}, ${colour2})`;
+
+    //aqui se coge el type de cada pokemon y si tiene mas de uno ambos
     const pokeTypes = pokemon.types.map((type)=> type.type.name).join(', ');
-    console.log(pokeTypes);''
+   
 
     const pokeInnerHtml = `
+        <div class='poke-id'>
+            <p> #${pokemon.id} </p>
+        </div>
         <div class='poke-img'>
             <img src='${pokemon.sprites.other.home.front_default}'>
         </div>
         <div class="poke-name">
-            <h2> ${pokemon.name} </h2>
+            <h2> ${pokemon.name}</h2>
         </div>
         <div class="poke-info">
-            <p> Height: ${pokemon.height} </p>
-            <p> Weight: ${pokemon.weight} </p>
-        </div>
-        <div class='poke-stats'>
-            <h5> Stats </h5>
-            <p> ${statBase} ${statName}</p>
-            <h5> Type </h5>
-            <p>${pokeTypes}</p>
+            <div class='poke-body'>
+                <p> Height: ${pokemon.height} </p>
+                <p> Weight: ${pokemon.weight} </p>
+                </div>
+            <div class='poke-stats'>
+                <h5> Type </h5>
+                <p>${pokeTypes}</p>
+            </div>
         </div>
     `;
 
@@ -137,6 +102,68 @@ function createPoke(pokemon) {
 
     pokeDiv$$.innerHTML = pokeInnerHtml;
 
-    li$$.appendChild(pokeDiv$$);
+    ol$$.appendChild(pokeDiv$$);
 
 }
+
+function getColour(type){ //Esta funcion recibe como parametro el type del pokemon, y devuelve su correlacion en color 
+
+    switch(type) {
+        case 'grass':
+        return colours.grass; 
+        case 'fire': 
+        return colours.fire;
+        case 'water':
+       return colours.water;
+        case 'bug':
+       return colours.bug;
+        case 'electric':
+       return colours.electric;
+        case 'normal':
+       return colours.normal;
+        case 'ice':
+       return colours.ice;
+        case 'fighting':
+       return colours.fighting;
+        case 'poison':
+       return colours.poison;
+        case 'ground':
+       return colours.ground;
+        case 'flying':
+       return colours.flying;
+        case 'psychic':
+       return colours.psychic;
+        case 'rock':
+       return colours.rock;
+        case 'ghost':
+       return colours.ghost;
+        case 'dragon':
+       return colours.dragon;
+        case 'dark':
+       return colours.dark;
+        case 'fairy':
+       return colours.fairy;
+        case 'steel':
+       return colours.steel;
+        
+    }
+}
+
+// const btn$$ = document.querySelector('.search-btn');
+
+// function findInput(pokemon) {
+
+//     const input$$ = document.querySelector('.search-input');
+
+//     console.log(input$$.value);
+
+//     input$$.addEventListener("input",() => searchPokemons(input$$.value, pokemon))
+
+// }
+
+// function searchPokemons(filter, pokemon) {
+
+//     let filteredPokemon = pokemon.filter((poke)=> poke.name.toLowerCase().includes(filter));
+
+//     createPoke(filteredPokemon);
+// }

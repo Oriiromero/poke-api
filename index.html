@@ -4,13 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="pokedex.js" ></script>
+    <link rel="stylesheet" href="./main/styles.css">
     <title>PokeApi</title>
 </head>
 <body>
+    <header>
+        <div>
+            <img src="/images/pngwing.com.png" alt="logo">
+        </div>
+  
+    </header>
+
       <div class="container">
-        <h1>Pokedex</h1>
+        <div class="search-div">
+            <input type="text" placeholder="Write your pokemon" class="search-input">
+            <button type="submit" class="search-btn"> Search </button>
+        </div>
         <ol id="pokedex"></ol>
     </div>
+
+
+    <script src="pokedex.js" ></script>
 </body>
 </html>
