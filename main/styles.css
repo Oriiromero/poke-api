@@ -3,20 +3,6 @@
   margin: 0;
 }
 
-header {
-  width: 100vw;
-  height: 100vh;
-  background-image: url(../images/background.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-}
-header img {
-  width: 500px;
-  margin: 30px 40px;
-}
 .container {
   background-image: url(../images/back2.jfif);
   background-repeat: repeat;
@@ -24,17 +10,35 @@ header img {
   flex-direction: column;
   align-items: center;
 }
+.container .logo {
+  width: 600px;
+}
 .container .search-div {
   margin: 80px 0 40px 0;
   height: 40px;
 }
 .container .search-div .search-input {
   border-radius: 10px;
-  width: 240px;
-  height: 30px;
+  width: 350px;
+  height: 50px;
   border: none;
   padding: 5px 5px 5px 15px;
   margin-right: 15px;
+  font-family: "Didact Gothic", sans-serif;
+  background-color: #285430;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+.container .search-div ::-moz-placeholder {
+  color: white;
+  opacity: 0.75;
+  font-style: italic;
+}
+.container .search-div ::placeholder {
+  color: white;
+  opacity: 0.75;
+  font-style: italic;
 }
 .container .search-div .search-btn {
   border-radius: 10px;
@@ -62,16 +66,22 @@ header img {
   position: absolute;
   margin-top: 20px;
   margin-left: 220px;
+  font-family: "Righteous", cursive;
+  color: #FEFAE0;
 }
 .container ol .pokemon-div .poke-name {
   margin: 10px 0;
   text-transform: uppercase;
   letter-spacing: 5px;
+  font-family: "Righteous", cursive;
+  color: #FEFAE0;
 }
 .container ol .pokemon-div .poke-info {
   display: flex;
   align-items: center;
   margin: 20px 0;
+  font-family: "Didact Gothic", sans-serif;
+  color: #FEFAE0;
 }
 .container ol .pokemon-div .poke-info .poke-body {
   margin-right: 20px;

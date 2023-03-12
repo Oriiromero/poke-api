@@ -20,7 +20,7 @@ const colours = {
 	fairy: '#D685AD',
 };
 
-// const pokemonArray = [];
+const pokemons = [];
 
 //FUNCION PARA ACCEDER A LA URL CON LOS DATOS
 const getUrl = async (iterator) => {
@@ -30,9 +30,8 @@ const getUrl = async (iterator) => {
     try{
         let response = await fetch(`${url}${iterator}`); //llamo a la api, toma un iterador para ubicar cada url
         let pokemon = await response.json(); //convierte esa respuesta en json, desglosa cada objeto de cada pokemon
-        // pokemon.push
         createPoke(pokemon); //utilizo esa respuesta para crear cada caja en la funcion createPoke
-        
+        pokemons.push(pokemon);
     } catch (err) {
         console.log(`Message: ${err}`);
     }
@@ -51,14 +50,13 @@ const fetchIterator = async () => {
 
 fetchIterator();
 
-
+const ol$$ = document.querySelector('ol');
 
 //FUNCION PARA CREAR CADA POKEMON
 function createPoke(pokemon) {
-    const ol$$ = document.querySelector('ol');
-
+    
     const pokeDiv$$ = document.createElement('div');
-    pokeDiv$$.classList.add('pokemon-div')
+    pokeDiv$$.classList.add('pokemon-div', 'card', 'animated');
 
     let statBase = pokemon.stats[0].base_stat;
     let statName = pokemon.stats[0].stat.name;
@@ -149,21 +147,24 @@ function getColour(type){ //Esta funcion recibe como parametro el type del pokem
     }
 }
 
-// const btn$$ = document.querySelector('.search-btn');
+const input$$ = document.querySelector('.search-input');
 
-// function findInput(pokemon) {
+const inputVal = (pokemons) =>{
+    input$$.addEventListener('input', ()=> findPokemon(input$$.value, pokemons)); 
+}   
 
-//     const input$$ = document.querySelector('.search-input');
+function findPokemon(filter, pokemons) {
 
-//     console.log(input$$.value);
+    const filterPokes = pokemons.filter((pokemon) => pokemon.name.includes(filter));
 
-//     input$$.addEventListener("input",() => searchPokemons(input$$.value, pokemon))
+    ol$$.innerHTML = '';
 
-// }
+    for(var i = 0; i < filterPokes.length; i++)
+    {
+        createPoke(filterPokes[i]);
+    }
+    
+}
 
-// function searchPokemons(filter, pokemon) {
+inputVal(pokemons);
 
-//     let filteredPokemon = pokemon.filter((poke)=> poke.name.toLowerCase().includes(filter));
-
-//     createPoke(filteredPokemon);
-// }
