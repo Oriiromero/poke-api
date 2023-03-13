@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 50px;
 }
 .container .logo {
   width: 600px;
@@ -17,7 +18,7 @@
   margin: 80px 0 40px 0;
   height: 40px;
 }
-.container .search-div .search-input {
+.container .search-input {
   border-radius: 10px;
   width: 350px;
   height: 50px;
@@ -30,38 +31,57 @@
   font-size: 18px;
   letter-spacing: 2px;
 }
-.container .search-div ::-moz-placeholder {
+.container ::-moz-placeholder {
   color: white;
   opacity: 0.75;
   font-style: italic;
 }
-.container .search-div ::placeholder {
+.container ::placeholder {
   color: white;
   opacity: 0.75;
   font-style: italic;
 }
-.container .search-div .search-btn {
+.container .search-btn {
   border-radius: 10px;
   width: 100px;
   height: 30px;
   border: none;
 }
-.container ol {
+
+ol {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.container ol .pokemon-div {
-  border: 8px solid #E5D9B6;
-  box-shadow: 1px 3px 3px #285430;
-  display: flex;
-  width: 300px;
-  margin: 30px 30px;
-  flex-direction: column;
-  align-items: center;
+ol .flip-card {
+  background-color: transparent;
   border-radius: 30px;
+  width: 300px;
+  height: 430px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  margin: 30px;
 }
-.container ol .pokemon-div .poke-id {
+ol .flip-card-inner {
+  border: 8px solid #E5D9B6;
+  position: relative;
+  border-radius: 30px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+ol .flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+ol .flip-card-front, ol .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+ol .flip-card-front .poke-id {
   margin-top: 15px;
   position: absolute;
   margin-top: 20px;
@@ -69,32 +89,30 @@
   font-family: "Righteous", cursive;
   color: #FEFAE0;
 }
-.container ol .pokemon-div .poke-name {
+ol .flip-card-front .poke-name {
   margin: 10px 0;
   text-transform: uppercase;
   letter-spacing: 5px;
   font-family: "Righteous", cursive;
   color: #FEFAE0;
 }
-.container ol .pokemon-div .poke-info {
-  display: flex;
-  align-items: center;
-  margin: 20px 0;
-  font-family: "Didact Gothic", sans-serif;
-  color: #FEFAE0;
-}
-.container ol .pokemon-div .poke-info .poke-body {
-  margin-right: 20px;
-}
-.container ol .pokemon-div .poke-info .poke-stats {
-  margin-left: 20px;
-  text-align: center;
-}
-.container ol .pokemon-div .poke-img {
+ol .flip-card-front .poke-img {
   text-align: center;
   padding-top: 40px;
 }
-.container ol .pokemon-div .poke-img img {
+ol .flip-card-front .poke-img img {
   width: 90%;
   height: 90%;
+}
+ol .flip-card-front .poke-types {
+  font-family: "Didact Gothic", sans-serif;
+  color: #FEFAE0;
+}
+ol .flip-card-back {
+  color: white;
+  transform: rotateY(180deg);
+}
+ol .flip-card-back .poke-body {
+  font-family: "Didact Gothic", sans-serif;
+  color: #FEFAE0;
 }/*# sourceMappingURL=styles.css.map */

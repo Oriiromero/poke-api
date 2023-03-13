@@ -3,116 +3,140 @@
     margin: 0;
 }
 
-
+//LOGO AND INPUT
 .container {
     background-image: url(../images/back2.jfif);
     background-repeat: repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 50px;
 
+    .logo {
+        width: 600px;
+    }
 
-        .logo {
-            width: 600px;
+    .search-div {
+        margin: 80px 0 40px 0;
+        height: 40px;
+    }
+
+    .search-input {
+        border-radius: 10px;
+        width: 350px;
+        height: 50px;
+        border: none;
+        padding: 5px 5px 5px 15px;
+        margin-right: 15px;
+        font-family: 'Didact Gothic', sans-serif;
+        background-color: #285430;
+        color: white;
+        font-size: 18px;
+        letter-spacing: 2px;
+    }
+
+    ::placeholder{
+        color: white;
+        opacity: 0.75;
+        font-style: italic;
+    }
+
+    .search-btn {
+        border-radius: 10px;
+        width: 100px;
+        height: 30px;
+        border: none;
+    }
+}
+
+//OL & DIVS
+
+ol {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .flip-card {
+        background-color: transparent;
+        border-radius: 30px;
+        width: 300px;
+        height: 430px;
+        perspective: 1000px; /* Remove this if you don't want the 3D effect */
+        margin: 30px;
+    }
+
+    //container needed to position the front and back side
+    .flip-card-inner {
+        border: 8px solid #E5D9B6;
+        position: relative;
+        border-radius: 30px;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+
+    //horizontal flip on hover over flip box container
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+      }
+      
+    //position the front and back side
+    .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden; /* Safari */
+        backface-visibility: hidden;
+      }
+      
+
+    //style the front side
+    .flip-card-front {
+
+        .poke-id {
+            margin-top: 15px;
+            position: absolute;
+            margin-top: 20px;
+            margin-left: 220px;
+            font-family: 'Righteous', cursive;
+            color: #FEFAE0;
+        
         }
-    
-        .search-div {
-            margin: 80px 0 40px 0;
-            height: 40px;
 
-            .search-input {
-                border-radius: 10px;
-                width: 350px;
-                height: 50px;
-                border: none;
-                padding: 5px 5px 5px 15px;
-                margin-right: 15px;
-                font-family: 'Didact Gothic', sans-serif;
-                background-color: #285430;
-                color: white;
-                font-size: 18px;
-                letter-spacing: 2px;
-            }
+        .poke-name {
+            margin: 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-family: 'Righteous', cursive;
+            color: #FEFAE0;
+        }
 
-            ::placeholder {
-                color: white;
-                opacity: 0.75;
-                font-style: italic;
-            }
+        .poke-img {
+            text-align: center;
+            padding-top: 40px;
 
-
-            .search-btn {
-                border-radius: 10px;
-                width: 100px;
-                height: 30px;
-                border: none;
+            img {
+                width: 90%;
+                height: 90%;
             }
         }
 
-        ol {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-
-            .pokemon-div {
-                border: 8px solid #E5D9B6;
-                box-shadow: 1px 3px 3px #285430;
-                display: flex;
-                width: 300px;
-                margin: 30px 30px;
-                flex-direction: column;
-                align-items: center;
-                border-radius: 30px;
-              
-
-                .poke-id {
-                    margin-top: 15px;
-                    position: absolute;
-                    margin-top: 20px;
-                    margin-left: 220px;
-                    font-family: 'Righteous', cursive;
-                    color: #FEFAE0;
-                
-                }
-
-                .poke-name {
-                    margin: 10px 0;
-                    text-transform: uppercase;
-                    letter-spacing: 5px;
-                    font-family: 'Righteous', cursive;
-                    color: #FEFAE0;
-                }
-
-                .poke-info {
-                    display: flex;
-                    align-items: center;
-                    margin: 20px 0;
-                    font-family: 'Didact Gothic', sans-serif;
-                    color: #FEFAE0;
-
-                    .poke-body {
-                        margin-right: 20px;
-                    }
-
-                    .poke-stats {
-                        margin-left: 20px;
-                        text-align: center;
-                    }
-
-                }
-                
-                .poke-img {
-                    text-align: center;
-                    padding-top: 40px;
-
-                    img {
-                        width: 90%;
-                        height: 90%;
-                    }
-                }
-            
-            }
-              
-                
+        .poke-types {
+            font-family: 'Didact Gothic', sans-serif;
+            color: #FEFAE0;
         }
+    }
+
+    //style the back side 
+    .flip-card-back {
+        color: white;
+        transform: rotateY(180deg);
+
+        .poke-body {
+            font-family: 'Didact Gothic', sans-serif;
+            color: #FEFAE0;
+        }
+      }
 }

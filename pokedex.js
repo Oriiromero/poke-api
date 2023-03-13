@@ -21,6 +21,8 @@ const colours = {
 };
 
 const pokemons = [];
+let pokesToShow = 152;
+let startNumber = 1;
 
 //FUNCION PARA ACCEDER A LA URL CON LOS DATOS
 const getUrl = async (iterator) => {
@@ -39,16 +41,16 @@ const getUrl = async (iterator) => {
 
 
 //FUNCION PARA ITERAR EL ID DE CADA POKEMON EN LA URL 
-const fetchIterator = async () => {
+const fetchIterator = async (startNumber, endNumber) => {
 
-    for(let i = 1; i < 152; i++) 
+    for(let i = startNumber; i < endNumber; i++) 
     {
        await getUrl(i); //utilizo el url de getUrl y le asigno su iterador 
     }
 
 }
+fetchIterator(startNumber, pokesToShow);
 
-fetchIterator();
 
 const ol$$ = document.querySelector('ol');
 
@@ -56,7 +58,11 @@ const ol$$ = document.querySelector('ol');
 function createPoke(pokemon) {
     
     const pokeDiv$$ = document.createElement('div');
-    pokeDiv$$.classList.add('pokemon-div', 'card', 'animated');
+    pokeDiv$$.classList.add('flip-card');
+
+    const pokeCard$$ = document.createElement('div');
+    pokeCard$$.classList.add('flip-card-inner');
+    pokeDiv$$.appendChild(pokeCard$$);
 
     let statBase = pokemon.stats[0].base_stat;
     let statName = pokemon.stats[0].stat.name;
@@ -68,37 +74,39 @@ function createPoke(pokemon) {
     let colour2 = pokemon.types.length > 1 ? getColour(pokemon.types[1].type.name) : colour1;
 
     //asigno el gradiante al div con ambos o un color
-    pokeDiv$$.style.backgroundImage = `linear-gradient(${colour1}, ${colour2})`;
+    pokeCard$$.style.backgroundImage = `linear-gradient(${colour1}, ${colour2})`;
 
     //aqui se coge el type de cada pokemon y si tiene mas de uno ambos
     const pokeTypes = pokemon.types.map((type)=> type.type.name).join(', ');
    
 
     const pokeInnerHtml = `
+    <div class='flip-card-front'>
         <div class='poke-id'>
-            <p> #${pokemon.id} </p>
+            <p> #${pokemon.id}</p>
         </div>
         <div class='poke-img'>
             <img src='${pokemon.sprites.other.home.front_default}'>
         </div>
-        <div class="poke-name">
-            <h2> ${pokemon.name}</h2>
+        <div class='poke-name'>
+            <h2> ${pokemon.name} </h2>
         </div>
-        <div class="poke-info">
-            <div class='poke-body'>
-                <p> Height: ${pokemon.height} </p>
-                <p> Weight: ${pokemon.weight} </p>
-                </div>
-            <div class='poke-stats'>
-                <h5> Type </h5>
-                <p>${pokeTypes}</p>
-            </div>
+        <div class='poke-types'>
+            <h5> Type </h5>
+            <p> ${pokeTypes} </p>
         </div>
+    </div>
+    <div class='flip-card-back'>
+        <div class='poke-body'>
+            <p> Height: ${pokemon.height} </p>
+            <p> Weight:  ${pokemon.weight} </p>
+        </div>
+    </div>
     `;
 
 
 
-    pokeDiv$$.innerHTML = pokeInnerHtml;
+    pokeCard$$.innerHTML = pokeInnerHtml;
 
     ol$$.appendChild(pokeDiv$$);
 
@@ -167,4 +175,6 @@ function findPokemon(filter, pokemons) {
 }
 
 inputVal(pokemons);
+
+
 
