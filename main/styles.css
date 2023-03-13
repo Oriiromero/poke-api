@@ -16,10 +16,8 @@
   text-align: center;
 }
 .container .logo {
-  width: 700px;
+  width: 900px;
   display: block;
-  width: 80vw;
-  max-width: 700px;
   height: auto;
   transition: 0.2s;
 }
@@ -68,7 +66,8 @@
 ol {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  margin: 0 4%;
 }
 ol .flip-card {
   background-color: transparent;
