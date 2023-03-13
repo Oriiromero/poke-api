@@ -11,11 +11,20 @@
   align-items: center;
   padding-top: 50px;
 }
+.container .logo-box {
+  cursor: pointer;
+  text-align: center;
+}
 .container .logo {
-  width: 600px;
+  width: 700px;
+  display: block;
+  width: 80vw;
+  max-width: 700px;
+  height: auto;
+  transition: 0.2s;
 }
 .container .search-div {
-  margin: 80px 0 40px 0;
+  margin: 80px 0 90px 0;
   height: 40px;
 }
 .container .search-input {
@@ -26,10 +35,18 @@
   padding: 5px 5px 5px 15px;
   margin-right: 15px;
   font-family: "Didact Gothic", sans-serif;
-  background-color: #285430;
+  background: radial-gradient(rgba(22, 122, 55, 0.133) 30%, rgba(9, 115, 41, 0.267));
+  box-shadow: 5px 5px 10px rgba(6, 33, 9, 0.467), -1px -1px 2px #78b7a3, 1px 1px 2px #0e5f3c;
   color: white;
   font-size: 18px;
   letter-spacing: 2px;
+  transition: 0.8s;
+}
+.container .search-input:focus {
+  outline: none;
+}
+.container .search-input:hover {
+  transform: scale(1.1);
 }
 .container ::-moz-placeholder {
   color: white;
@@ -56,8 +73,8 @@ ol {
 ol .flip-card {
   background-color: transparent;
   border-radius: 30px;
-  width: 300px;
-  height: 430px;
+  width: 400px;
+  height: 570px;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
   margin: 30px;
 }
@@ -68,7 +85,7 @@ ol .flip-card-inner {
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: transform 0.8s;
+  transition: transform 1.2s;
   transform-style: preserve-3d;
 }
 ol .flip-card:hover .flip-card-inner {
@@ -85,20 +102,20 @@ ol .flip-card-front .poke-id {
   margin-top: 15px;
   position: absolute;
   margin-top: 20px;
-  margin-left: 220px;
+  margin-left: 350px;
   font-family: "Righteous", cursive;
   color: #FEFAE0;
 }
 ol .flip-card-front .poke-name {
-  margin: 10px 0;
+  margin: 20px 0;
   text-transform: uppercase;
   letter-spacing: 5px;
   font-family: "Righteous", cursive;
   color: #FEFAE0;
 }
 ol .flip-card-front .poke-img {
-  text-align: center;
-  padding-top: 40px;
+  display: flex;
+  justify-content: center;
 }
 ol .flip-card-front .poke-img img {
   width: 90%;
@@ -107,12 +124,48 @@ ol .flip-card-front .poke-img img {
 ol .flip-card-front .poke-types {
   font-family: "Didact Gothic", sans-serif;
   color: #FEFAE0;
+  margin: 5px;
 }
-ol .flip-card-back {
-  color: white;
-  transform: rotateY(180deg);
+ol .flip-card-front .poke-types h5 {
+  font-size: 20px;
 }
-ol .flip-card-back .poke-body {
+ol .flip-card-front .poke-types p {
+  font-size: 16px;
+  font-style: italic;
+}
+ol .flip-card-front .poke-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   font-family: "Didact Gothic", sans-serif;
   color: #FEFAE0;
+  margin: 10px;
+}
+ol .flip-card-front .poke-body .poke-body-h, ol .flip-card-front .poke-body .poke-body-w {
+  display: flex;
+  align-items: center;
+}
+ol .flip-card-front .poke-body .poke-body-h h5, ol .flip-card-front .poke-body .poke-body-w h5 {
+  font-size: 15px;
+  margin-right: 15px;
+}
+ol .flip-card-front .poke-body .poke-body-h p, ol .flip-card-front .poke-body .poke-body-w p {
+  font-size: 12px;
+}
+ol .flip-card-back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+}
+ol .flip-card-back .poke-ability {
+  font-family: "Didact Gothic", sans-serif;
+  color: #FEFAE0;
+}
+ol .flip-card-back .poke-ability h5 {
+  margin: 10px;
+  text-transform: uppercase;
+}
+ol .flip-card-back .poke-ability p {
+  font-size: 13px;
+  margin: 10px;
 }/*# sourceMappingURL=styles.css.map */

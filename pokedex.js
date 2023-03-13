@@ -32,6 +32,19 @@ const getUrl = async (iterator) => {
     try{
         let response = await fetch(`${url}${iterator}`); //llamo a la api, toma un iterador para ubicar cada url
         let pokemon = await response.json(); //convierte esa respuesta en json, desglosa cada objeto de cada pokemon
+        let pokeText = pokemon.abilities.map((url)=> url.ability.url);
+        let texts = [];
+        for (let url of pokeText){
+            const res = await fetch(url);
+        const ability = await res.json();
+        const textAbility = ability.effect_entries.map((effect) => {
+            if (effect.language.name == 'en'){
+                texts.push(effect.effect);
+            }
+            }) 
+        }
+
+        pokemon = {...pokemon, textos: texts};
         createPoke(pokemon); //utilizo esa respuesta para crear cada caja en la funcion createPoke
         pokemons.push(pokemon);
     } catch (err) {
@@ -55,7 +68,7 @@ fetchIterator(startNumber, pokesToShow);
 const ol$$ = document.querySelector('ol');
 
 //FUNCION PARA CREAR CADA POKEMON
-function createPoke(pokemon) {
+async function createPoke(pokemon) {
     
     const pokeDiv$$ = document.createElement('div');
     pokeDiv$$.classList.add('flip-card');
@@ -77,33 +90,46 @@ function createPoke(pokemon) {
     pokeCard$$.style.backgroundImage = `linear-gradient(${colour1}, ${colour2})`;
 
     //aqui se coge el type de cada pokemon y si tiene mas de uno ambos
-    const pokeTypes = pokemon.types.map((type)=> type.type.name).join(', ');
-   
+    const pokeTypes = pokemon.types.map((type)=> type.type.name);
+
+     //aqui se coge los names de abilities de cada pokemon 
+    const pokeAbilityName = pokemon.abilities.map((ability)=> ability.ability.name);
 
     const pokeInnerHtml = `
-    <div class='flip-card-front'>
-        <div class='poke-id'>
-            <p> #${pokemon.id}</p>
-        </div>
-        <div class='poke-img'>
-            <img src='${pokemon.sprites.other.home.front_default}'>
-        </div>
-        <div class='poke-name'>
-            <h2> ${pokemon.name} </h2>
-        </div>
-        <div class='poke-types'>
-            <h5> Type </h5>
-            <p> ${pokeTypes} </p>
-        </div>
-    </div>
-    <div class='flip-card-back'>
-        <div class='poke-body'>
-            <p> Height: ${pokemon.height} </p>
-            <p> Weight:  ${pokemon.weight} </p>
-        </div>
-    </div>
+            <div class='flip-card-front'>
+                <div class='poke-id'>
+                    <p> #${pokemon.id}</p>
+                </div>
+                <div class='poke-img'>
+                    <img src='${pokemon.sprites.other.home.front_default}'>
+                </div>
+                <div class='poke-name'>
+                    <h2> ${pokemon.name} </h2>
+                </div>
+                <div class='poke-types'>
+                    <h5> Type </h5>
+                    <p> ${pokeTypes} </p>
+                </div>
+                <div class='poke-body'>
+                    <div class='poke-body-h'>
+                     <h5> Height:</h5> <p>${pokemon.height} </p>
+                    </div>
+                    <div class='poke-body-w'>
+                        <h5> Weight:</h5> <p>${pokemon.weight} </p>
+                    </div>
+                </div>
+            </div>
+            <div class='flip-card-back'>
+                <div class='poke-ability'>
+                    <h5> Abilities </h5>
+                    <h4> ${pokeAbilityName[0]}:</h4>
+                    <p> ${pokemon.textos[0]} </p>
+                    <h4> ${pokeAbilityName[1]}:</h4>
+                    <p>${pokemon.textos[1]} </p>
+                </div>
+                </div>
+            </div>
     `;
-
 
 
     pokeCard$$.innerHTML = pokeInnerHtml;
@@ -157,7 +183,7 @@ function getColour(type){ //Esta funcion recibe como parametro el type del pokem
 
 const input$$ = document.querySelector('.search-input');
 
-const inputVal = (pokemons) =>{
+function inputVal(pokemons) {
     input$$.addEventListener('input', ()=> findPokemon(input$$.value, pokemons)); 
 }   
 
@@ -176,5 +202,24 @@ function findPokemon(filter, pokemons) {
 
 inputVal(pokemons);
 
+//TILT LOGO
+let start = document.querySelector('.logo-box');
+let ex = 10;
+function swing(element) {
 
+    function update(time) {
+        
+        const x = Math.sin(time / 1231) * ex;
+        const y = Math.sin(time / 1458) * ex;
 
+        element.style.transform = [
+            `rotateX(${x}deg)`,
+            `rotateY(${y}deg)`
+        ].join(' ');
+
+        requestAnimationFrame(update);
+    }
+    update(0); //love your nested functions
+}
+
+swing(start);
