@@ -3,16 +3,72 @@
     margin: 0;
 }
 
+
 //LOGO AND INPUT
 .container {
-    background-image: url(../images/back2.jfif);
+    background-image: url(../images/grass.jpg);
     background-repeat: repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 50px;
 
+
+    //NAVBAR
+    nav {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 100px;
+        padding-right: 100px;
+        width: 90%;
+        height: 10vh;
+        background: radial-gradient(rgba(22, 122, 55, 0.133) 30%, rgba(9, 115, 41, 0.267));
+        box-shadow: 5px 5px 10px rgba(6, 33, 9, 0.467), -1px -1px 2px #78b7a3, 1px 1px 2px #0e5f3c;
+        font-family: 'Didact Gothic', sans-serif;
+        color: white;
+
+        .links-container {
+            display: flex;
+
+            .poke-section, .to-do-list {
+                text-align: center;
+                line-height: 4.5;
+                width: 150px;
+                height: 100%;
+                transition: all ease 0.8s;
+
+                a {
+                    text-decoration: none;
+                    color: white;
+                    font-size: 20px;
+                    letter-spacing: 1.2px;
+                    text-transform: uppercase;
+                    font-weight: bolder;
+                }
+
+            }
+
+            .poke-section:hover, .to-do-list:hover {
+                background: rgb(4, 56, 32, 0.37);
+                border-bottom: white;
+                border-width: 5px;
+            }
+        }
+
+        .gif-container {
+            width: 65px;
+            height: 100%;
+
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+
+    //LOGO CONFIG
     .logo-box {
+        margin-top: 30px;
         cursor: pointer;
         text-align: center;
     }
@@ -24,6 +80,8 @@
         transition:0.2s
     }
 
+
+    //SEARCH INPUT
     .search-div {
         margin: 80px 0 90px 0;
         height: 40px;
@@ -37,7 +95,7 @@
         padding: 5px 5px 5px 15px;
         margin-right: 15px;
         font-family: 'Didact Gothic', sans-serif;
-        background: radial-gradient(rgba(22, 122, 55, 0.133) 30%, rgba(9, 115, 41, 0.267));
+        background: radial-gradient(rgba(22, 122, 55, 0.361) 30%, rgba(9, 115, 41, 0.457));
         box-shadow: 5px 5px 10px rgba(6, 33, 9, 0.467), -1px -1px 2px #78b7a3, 1px 1px 2px #0e5f3c;
         color: white;
         font-size: 18px;
@@ -65,7 +123,6 @@
         height: 30px;
         border: none;
     }
-}
 
 //OL & DIVS
 
@@ -94,6 +151,7 @@ ol {
         text-align: center;
         transition: transform 1.2s;
         transform-style: preserve-3d;
+        box-shadow: 2px 2px 2px 2px rgba(255, 255, 255, 0.578);
     }
 
     //horizontal flip on hover over flip box container
@@ -204,4 +262,36 @@ ol {
             }
         }
       }
+    }
+
+    footer{
+        margin-top: 60px;
+        padding: 30px 10px;
+        width: 97.9vw;
+        height: 3vh;
+        background-color: #f9f3dfd4;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-family: 'Didact Gothic', sans-serif;
+        color: #20262E;
+        font-weight: bolder;
+        letter-spacing: 2px;
+        font-size: 15px;
+    
+        .social {
+            
+            a {
+                margin: 0 25px; 
+                text-decoration: none;
+    
+                img {
+                    width: 40px;
+                }
+            }
+        }
+    
+    }
+
 }
+

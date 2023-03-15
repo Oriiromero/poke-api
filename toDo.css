@@ -1,0 +1,164 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    background-image: url(./images/back3.png);
+    color: white;
+  }
+  
+    nav {
+      display: flex;
+      justify-content: space-between;
+      padding-left: 100px;
+      padding-right: 100px;
+      width: 95.1%;
+      height: 10vh;
+      background: radial-gradient(rgba(160, 172, 164, 0.133) 30%, rgba(110, 114, 111, 0.267));
+      box-shadow: 5px 5px 10px rgba(24, 24, 24, 0.467), -1px -1px 2px #666867, 1px 1px 2px #ffffff;
+      font-family: "Didact Gothic", sans-serif;
+  }
+
+  nav .links-container {
+    display: flex;
+  }
+  nav .links-container .poke-section, nav .links-container .to-do-list {
+    text-align: center;
+    line-height: 4.5;
+    width: 150px;
+    height: 100%;
+    transition: all ease 0.8s;
+  }
+    nav .links-container .poke-section a,  nav .links-container .to-do-list a {
+    text-decoration: none;
+    color: #434242;
+    font-size: 20px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    font-weight: bolder;
+  }
+  nav .links-container .poke-section:hover, nav .links-container .to-do-list:hover {
+    background: rgba(88, 67, 120, 0.37);
+    border-bottom: white;
+    border-width: 5px;
+  }
+
+  h1 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    font-family: "Didact Gothic", sans-serif;
+    color: #20262E;
+    font-weight: bolder;
+  }
+  
+ /* list */
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    margin-top: 80px;
+    margin-bottom: 30px;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    background: whitesmoke;
+    padding: 30px;
+    box-shadow: 5px 5px 10px rgba(118, 104, 151, 0.467);
+  }
+  
+  form {
+    display: flex;
+  }
+  
+  input {
+    padding: 15px 10px;
+    outline: none;
+    width: 400px;
+    border-radius: 5px;
+    margin: 0 5px;
+    border: none;
+    box-shadow: 5px 5px 10px rgba(118, 104, 151, 0.467);
+    font-family: "Didact Gothic", sans-serif;
+    color: #20262E;
+    font-weight: bolder;
+    letter-spacing: 2px;
+  }
+  
+  .li-container {
+    background: whitesmoke;
+    width: 100%;
+    color: darkslategray;
+    margin-top: 20px;
+  }
+  
+  ul {
+    padding: 0;
+    background: whitesmoke;
+  }
+  
+  li {
+    padding: 7px 7px 7px 10px;
+    list-style: none;
+    background: #E3DFFD;
+    text-align: center;
+    font-family: "Didact Gothic", sans-serif;
+    text-transform: uppercase;
+    color: #20262E;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    margin-top: 15px;
+    display: flex;
+  }
+  
+  li p {
+    margin: 0;
+    padding: 15px;
+    width: 100%;
+  }
+  
+  .erase {
+    margin-left: auto;
+    border: none;
+    background-color: #790252;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    outline: none;
+    border-radius: 5px;
+    width: 10%;
+    font-size: 1.2em;
+    transition: 0.5s;
+  }
+  
+  .erase:hover {
+    cursor: pointer;
+    background-color: #E80F88;
+  }
+  
+  .btn-add {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-family: fantasy;
+    background-color: #645CAA;
+    font-size: 1.4rem;
+    outline: none;
+    box-shadow: 5px 5px 10px rgba(118, 104, 151, 0.467);
+    transition: 0.5s;
+  }
+  
+  .btn-add:hover {
+    cursor: pointer;
+    background-color: #EBC7E8;
+  }
+  
+  .empty {
+    font-family: "Didact Gothic", sans-serif;
+    font-style: italic;
+    color: #20262E;
+  }
