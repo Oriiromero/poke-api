@@ -232,4 +232,9 @@
 }
 .container footer .social a img {
   width: 40px;
+  opacity: 5;
+  transition: 0.7s;
+}
+.container footer .social a:hover img {
+  opacity: 0.5;
 }/*# sourceMappingURL=styles.css.map */

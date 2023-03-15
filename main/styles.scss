@@ -287,6 +287,14 @@ ol {
     
                 img {
                     width: 40px;
+                    opacity: 5;
+                    transition: 0.7s;
+                }
+            }
+
+            a:hover {
+                img {
+                    opacity: 0.5;
                 }
             }
         }
