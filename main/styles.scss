@@ -134,8 +134,8 @@ ol {
     .flip-card {
         background-color: transparent;
         border-radius: 30px;
-        width: 400px;
-        height: 570px;
+        width: 300px;
+        height: 470px;
         perspective: 1000px; /* Remove this if you don't want the 3D effect */
         margin: 30px;
     }
@@ -175,7 +175,7 @@ ol {
             margin-top: 15px;
             position: absolute;
             margin-top: 20px;
-            margin-left: 350px;
+            margin-left: 250px;
             font-family: 'Righteous', cursive;
             color: #FEFAE0;
         
@@ -243,15 +243,22 @@ ol {
         transform: rotateY(180deg);
         display: flex;
         flex-direction: column;
+        justify-content: center;
 
         
         
-        .poke-ability {
+        .poke-ability {            
             font-family: 'Didact Gothic', sans-serif;
             color: #FEFAE0;
+            width: 100%;
 
             h5 {
                 margin: 10px;
+                text-transform: uppercase;
+            }
+
+            h6 {
+                margin: 20px 10px 10px 10px;
                 text-transform: uppercase;
             }
             

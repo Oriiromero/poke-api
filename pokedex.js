@@ -122,10 +122,9 @@ async function createPoke(pokemon) {
             <div class='flip-card-back'>
                 <div class='poke-ability'>
                     <h5> Abilities </h5>
-                    <h4> ${pokeAbilityName[0]}:</h4>
-                    <p> ${pokemon.textos[0]} </p>
-                    <h4> ${pokeAbilityName[1]}:</h4>
-                    <p>${pokemon.textos[1]} </p>
+                    <h4>  ${pokeAbilityName}</h4>
+                    <h6> ${pokeAbilityName[0]}:</h6>
+                    <p>${pokemon.textos[0]} </p>
                 </div>
                 </div>
             </div>
