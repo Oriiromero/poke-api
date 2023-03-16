@@ -11,9 +11,9 @@ let numTasks = 0;
 btn$$.addEventListener('click', function(e) {
     let str = input$$.value;
 
-    if(str.replace(/\s/g, '').length == 0){
-        return;
-    }
+    // if(str.replace(/\s/g, '').length == 0){
+    //     return;
+    // }
 
     numTasks++;
 
