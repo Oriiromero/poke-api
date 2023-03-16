@@ -108,7 +108,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 0 4%;
 }
 .container ol .flip-card {
   background-color: transparent;
@@ -219,7 +218,7 @@
 .container footer {
   margin-top: 60px;
   padding: 30px 10px;
-  width: 85.5vw;
+  width: 97.6vw;
   height: 3vh;
   background-color: rgba(249, 243, 223, 0.831372549);
   display: flex;
